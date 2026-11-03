@@ -1,0 +1,56 @@
+{
+ "address": "אופנהיימר 10, תל אביב",
+ "cities": "תל אביב, רמת גן, גבעתיים, בני ברק, רמת השרון, הרצליה, חולון, בת ים, פתח תקווה, גבעת שמואל, קרית אונו, אור יהודה, יהוד, כפר סבא, רעננה, הוד השרון, ראשון לציון, אזור, נתניה",
+ "radius_km": 30,
+ "max_drive_min": 25,
+ "worth_min": 30,
+ "worth_save": 50,
+ "max_per_chain": 4,
+ "favorites": [
+  {
+   "label": "קרפור נווה אביבים",
+   "chain_key": "YAYNO_BITAN_AND_CARREFOUR",
+   "any": [
+    "נווה אביבים",
+    "אופנהיימר"
+   ]
+  },
+  {
+   "label": "שופרסל טאגור",
+   "chain_key": "SHUFERSAL",
+   "any": [
+    "טאגור",
+    "טגור"
+   ]
+  },
+  {
+   "label": "קרפור שוסטר",
+   "chain_key": "YAYNO_BITAN_AND_CARREFOUR",
+   "any": [
+    "שוסטר"
+   ]
+  },
+  {
+   "label": "אושר עד בני ברק",
+   "chain_key": "OSHER_AD",
+   "any": [
+    "בני ברק"
+   ]
+  },
+  {
+   "label": "רמי לוי בני ברק",
+   "chain_key": "RAMI_LEVY",
+   "any": [
+    "בני ברק"
+   ]
+  }
+ ],
+ "chains": [
+  "SHUFERSAL",
+  "RAMI_LEVY",
+  "OSHER_AD",
+  "YOHANANOF",
+  "SUPER_YUDA"
+ ],
+ "include_club": false
+}

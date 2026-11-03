@@ -1,0 +1,41 @@
+name: daily prices
+on:
+  schedule:
+    - cron: "40 3 * * *"      # every morning ~05:40-06:40 Israel time
+  workflow_dispatch: {}        # "Run workflow" button for a manual update
+permissions:
+  contents: write
+concurrency: prices
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: install
+        run: pip install --quiet il-supermarket-scraper requests lxml
+      - name: download prices and build the phone file
+        env:
+          SUPERZOL_SCRAPE_TIMEOUT: "240"
+        run: python build_data.py --group github
+      - name: keep location caches (small) on main
+        run: |
+          git config user.name "price-bot"
+          git config user.email "price-bot@users.noreply.github.com"
+          git add data/geocache.json data/nearby.json data/nearby_meta.json 2>/dev/null || true
+          git commit -m "update location cache" || echo "no cache changes"
+          git push || true
+      - name: publish today's prices on the 'prices' branch (replaced daily, no history)
+        run: |
+          mkdir pub && cp out/prices_github.json pub/
+          cd pub
+          git init -q -b prices
+          git config user.name "price-bot"
+          git config user.email "price-bot@users.noreply.github.com"
+          git add . && git commit -q -m "prices $(date -u +%F)"
+          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" prices
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
