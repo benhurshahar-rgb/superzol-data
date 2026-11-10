@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+<radialGradient id="bg" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#ffd27a"/><stop offset="1" stop-color="#f5a623"/></radialGradient>
+<linearGradient id="bk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9774a"/><stop offset="1" stop-color="#8a5230"/></linearGradient>
+</defs>
+<rect width="512" height="512" fill="url(#bg)"/>
+<g transform="translate(256 262) scale(.9) translate(-256 -262)">
+<!-- handle -->
+<path d="M150 262 C150 150 362 150 362 262" fill="none" stroke="#7a4527" stroke-width="16" stroke-linecap="round"/>
+<!-- bread -->
+<g transform="rotate(-28 185 225)"><rect x="135" y="185" width="105" height="70" rx="35" fill="#e0a45c" stroke="#7a4527" stroke-width="7"/>
+<path d="M165 200 l-10 30 M190 196 l-10 34 M215 200 l-10 30" stroke="#a8682f" stroke-width="7" stroke-linecap="round"/></g>
+<!-- greens -->
+<path d="M318 260 C320 210 330 185 352 160 M330 262 C338 220 350 205 372 192 M312 258 C305 222 298 205 285 190" fill="none" stroke="#3f9b45" stroke-width="10" stroke-linecap="round"/>
+<!-- milk carton -->
+<g stroke="#5b4a3a" stroke-width="7" stroke-linejoin="round">
+<path d="M262 150 h46 v22 l14 22 v80 h-74 v-80 l14 -22 z" fill="#ffffff"/>
+<path d="M248 214 h74 v34 h-74 z" fill="#4a90d9"/>
+<path d="M262 150 h46 v-12 h-46 z" fill="#4a90d9"/></g>
+<!-- apple -->
+<circle cx="228" cy="252" r="38" fill="#e53935" stroke="#7a1f1c" stroke-width="7"/>
+<path d="M228 216 q4 -16 18 -22" stroke="#5b3a1f" stroke-width="6" fill="none" stroke-linecap="round"/>
+<ellipse cx="214" cy="240" rx="9" ry="6" fill="#fff" opacity=".45"/>
+<!-- basket body -->
+<path d="M122 262 h268 l-26 128 a14 14 0 0 1 -14 11 h-188 a14 14 0 0 1 -14 -11 z" fill="url(#bk)" stroke="#5e331b" stroke-width="8" stroke-linejoin="round"/>
+<rect x="110" y="250" width="292" height="30" rx="12" fill="#c8875a" stroke="#5e331b" stroke-width="8"/>
+<path d="M190 292 l6 96 M236 292 l2 100 M276 292 l-2 100 M322 292 l-6 96" stroke="#5e331b" stroke-width="7" stroke-linecap="round" opacity=".8"/>
+</g>
+</svg>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>הסל הזול</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#f5a623">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="הסל הזול">
+<style>
+  :root{--bg:#fff7e8;--ink:#2b2118;--mute:#7a6a58;--accent:#e08a00;--btn:#167a52}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);
+    font-family:Rubik,"Segoe UI",Arial,sans-serif;padding:24px max(16px,env(safe-area-inset-left,0px))}
+  main{max-width:420px;text-align:center;display:grid;gap:14px;justify-items:center}
+  img{width:120px;height:120px;border-radius:28px;box-shadow:0 6px 20px #0002}
+  h1{margin:0;font-size:28px}
+  p{margin:0;color:var(--mute);line-height:1.5}
+  a.go{display:inline-block;background:var(--btn);color:#fff;text-decoration:none;font-weight:700;font-size:18px;padding:14px 28px;border-radius:14px}
+  button{font:inherit;border:0;background:var(--accent);color:#fff;font-weight:700;font-size:17px;padding:12px 24px;border-radius:14px;cursor:pointer}
+  ol{text-align:right;color:var(--mute);margin:0;padding-inline-start:20px;line-height:1.7}
+  .hidden{display:none}
+</style>
+</head>
+<body>
+<main>
+  <img src="icon-512.png" alt="">
+  <h1>הסל הזול</h1>
+  <p id="msg">איפה הכי זול לקנות את רשימת הקניות.</p>
+  <a class="go" id="go" href="https://claude.ai/artifact/7dH9D3o1L9AWY4ZFxTU9rx">פתח את האפליקציה</a>
+  <button id="install" class="hidden">📲 התקן במסך הבית</button>
+  <ol id="how">
+    <li>בכרום: תפריט ⋮ ← <b>התקן אפליקציה</b> (או "הוסף למסך הבית" ← <b>התקן</b>).</li>
+    <li>האייקון של הסל יופיע במסך הבית, בלי חץ.</li>
+  </ol>
+</main>
+<script>
+const APP = "https://claude.ai/artifact/7dH9D3o1L9AWY4ZFxTU9rx";
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+const standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone || location.search.includes("app=1");
+if (standalone) {
+  // opened from the home-screen icon: go straight to the app
+  document.getElementById("msg").textContent = "פותח...";
+  document.getElementById("how").classList.add("hidden");
+  location.replace(APP);
+}
+let deferred = null;
+addEventListener("beforeinstallprompt", e => {
+  e.preventDefault(); deferred = e;
+  document.getElementById("install").classList.remove("hidden");
+});
+document.getElementById("install").onclick = async () => {
+  if (!deferred) return; deferred.prompt(); await deferred.userChoice; deferred = null;
+  document.getElementById("install").classList.add("hidden");
+};
+addEventListener("appinstalled", () => { document.getElementById("msg").textContent = "הותקן ✓ אפשר לפתוח מהאייקון במסך הבית."; });
+</script>
+</body>
+</html>
